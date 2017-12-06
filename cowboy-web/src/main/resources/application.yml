@@ -1,0 +1,3 @@
+server:
+  context-path: /cowboy
+  port: 9999
