@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Configuration;
 public class CowobyApplication {
 
     public static void main(String[] args) {
-        System.out.println("........fsf...");
         SpringApplication.run(CowobyApplication.class, args);
     }
 }

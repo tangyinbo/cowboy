@@ -9,9 +9,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @SpringBootTest
 public class CowobyApplicationTests {
 
-	@Test
-	public void contextLoads() {
-		System.out.println("kaka");
-	}
-
+    @Test
+    public void contextLoads() {
+    }
 }

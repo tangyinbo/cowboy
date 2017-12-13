@@ -2,6 +2,7 @@ package com.cowboy.sys.controller;/**
  * Created by Administrator on 2017/12/6/0006.
  */
 
+import com.cowboy.sys.entity.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,5 +16,9 @@ public class MyTestController {
     @RequestMapping("/hello")
     public String sayHello(){
         return "hello tangy8inbo.";
+    }
+    @RequestMapping("/getUser")
+    public User getUser(){
+        return new User(11,null);
     }
 }

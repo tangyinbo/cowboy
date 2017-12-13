@@ -1,3 +1,12 @@
 server:
   context-path: /cowboy
   port: 9999
+# profile active config
+spring:
+  profiles:
+    active: dev
+#--mybatis config---------------------------
+mybatis:
+  configLocation: classpath:mybatis/mybatis-config.xml
+  mapperLocations: classpath:mapper/*.xml
+  mapperScannerConfigurer: com.cowboy.*.mapper
