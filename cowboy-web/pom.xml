@@ -18,6 +18,11 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.cowboy</groupId>
+            <artifactId>common-log</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
         <!--spring boot web-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,6 +73,14 @@
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/com.baomidou/mybatisplus-spring-boot-starter -->
+    <!--    <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatisplus-spring-boot-starter</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+-->
 
         <dependency>
             <groupId>junit</groupId>

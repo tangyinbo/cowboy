@@ -1,0 +1,3 @@
+# Auto Configure,这里配置spring 自动配置类,作为依赖的时候会自动加载
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.cowboy.log.CowboyLogConfiguration
