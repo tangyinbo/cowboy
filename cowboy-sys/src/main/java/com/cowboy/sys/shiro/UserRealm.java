@@ -1,18 +1,17 @@
-package com.cowboy.sys.config;/**
+package com.cowboy.sys.shiro;/**
  * Created by Administrator on 2017/12/14/0014.
  */
 
 import com.cowboy.comon.model.shiro.ShiroUser;
 import com.cowboy.sys.entity.SysUser;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authc.credential.CredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
@@ -21,6 +20,7 @@ import javax.annotation.PostConstruct;
  * @version 1.0
  * @create 2017-12-14 18:49
  **/
+@Component
 public class UserRealm extends AuthorizingRealm {
     @PostConstruct
     public void initRealm() {
@@ -28,7 +28,7 @@ public class UserRealm extends AuthorizingRealm {
         setCredentialsMatcher(new CredentialsMatcher() {
             @Override
             public boolean doCredentialsMatch(AuthenticationToken authenticationToken, AuthenticationInfo authenticationInfo) {
-                String password = new String(((UsernamePasswordToken) authenticationInfo).getPassword());
+                String password = new String(((UsernamePasswordToken) authenticationToken).getPassword());
                 //获得数据库中的密码
                 String dbPassword = (String) authenticationInfo.getCredentials();
                 return password.equals(dbPassword);
