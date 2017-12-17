@@ -34,9 +34,9 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
-        registry.addResourceHandler("/public/**").addResourceLocations("classpath:/public/");
-        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/resources/");
+       /* registry.addResourceHandler("/static*//**").addResourceLocations("classpath:/static/");
+        registry.addResourceHandler("/public*//**").addResourceLocations("classpath:/public/");
+        registry.addResourceHandler("/resources*//**").addResourceLocations("classpath:/resources/");*/
     }
 
     /**
@@ -46,7 +46,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
     @Bean
     public InternalResourceViewResolver defaultViewResolver(){
         InternalResourceViewResolver internalResourceViewResolver = new InternalResourceViewResolver();
-        internalResourceViewResolver.setPrefix("/webapp/");
+        internalResourceViewResolver.setPrefix("/");
         internalResourceViewResolver.setSuffix(".html");
         return internalResourceViewResolver;
     }
