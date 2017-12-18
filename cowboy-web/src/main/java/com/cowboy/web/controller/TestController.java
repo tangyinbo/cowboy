@@ -19,12 +19,12 @@ import java.io.IOException;
  **/
 @Controller
 public class TestController {
-    @RequestMapping("/test")
+/*    @RequestMapping("/test")
     @RequestParamResultLogPrint
     public void test(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("message","it's forword ");
         //req.getRequestDispatcher("webapp/sys2.html").forward(req,resp);
         resp.sendRedirect("webapp/sys2.html");
 
-    }
+    }*/
 }

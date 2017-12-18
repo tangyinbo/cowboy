@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>.active { color: red; font-weight: bolder; }</style>
+    <script type="text/javascript" src="../js/angular/angular.js"></script>
+    <script type="text/javascript" src="../js/angular/uirouter/angular-ui-router.js"></script>
+    <script type="text/javascript" src="../js/app/lazyload/ocLazyLoad.js"></script>
+    <script type="text/javascript" src="./testApp.js"></script>
+</head>
+<body ng-app="heroApp">
+<a ui-sref="hello" >Hello</a>
+<a ui-sref="about" ui-sref-active="active">About</a>
+<a ui-sref="content1({id:8888})" ui-sref-active="active">content1</a>
+<a ui-sref="content2" ui-sref-active="active">content2</a>
+<a ui-sref="content1.son1" ui-sref-active="active">content1.son1</a>
+
+<div ng-controller="MainCtrl as ctrl">
+    <input type="text" ng-model="ctrl.hero.name"/>
+    <b>Hero</b><br>
+    <hero-detail hero="ctrl.hero"></hero-detail>
+</div>
+<ui-view></ui-view>
+</body>
+
+</html>
