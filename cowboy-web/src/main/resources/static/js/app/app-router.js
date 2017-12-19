@@ -1,5 +1,6 @@
 //懒加载路由配置
-function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider,$urlMatcherFactoryProvider) {
+    $urlMatcherFactoryProvider.strictMode(false);
     $urlRouterProvider.otherwise("/index");
     //当前debug模式,懒加载会打印日志
     $ocLazyLoadProvider.config({
@@ -8,22 +9,21 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
     $stateProvider
         .state('index', {
             url: '/index',
-            templateUrl: 'index.html'
+            templateUrl: './view/welcome.html'
         })
-        .state('content1', {
-            url: '/content1/:id',
-            templateUrl: 'test/content1.html',
-            controller: 'myLoadCtrl',
+        .state('userList', {
+            url: '/userList',
+            templateUrl: './view/sys/user/userList.html',
+            controller: 'UserListCtrl',
             resolve: {
                 loader: function ($ocLazyLoad, $q) {
                     //这个return语句一定要有,不然的话刷新浏览器会有问题
                     return $ocLazyLoad.load({
-                        files: ['myload.js']
+                        files: ['js/app/userController.js']
                     });
                 }
             }
         })
 
 }
-
-angular.module("cowboyApp").config();
+angular.module("cowboyApp").config(config);

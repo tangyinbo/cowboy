@@ -62,7 +62,7 @@ var App = function () {
 	/*	Sidebar
 	/*-----------------------------------------------------------------------------------*/
 	var handleSidebar = function () {
-	jQuery('.sidebar-menu .has-sub > a').click(function () {
+	$('#sidebar').on('click','.sidebar-menu .has-sub > a',function () {
             var last = jQuery('.has-sub.open', $('.sidebar-menu'));
             last.removeClass("open");
             jQuery('.arrow', last).removeClass("open");
@@ -95,7 +95,7 @@ var App = function () {
         });
 		
 	// Handle sub-sub menus
-	jQuery('.sidebar-menu .has-sub .sub .has-sub-sub > a').click(function () {
+		$('#sidebar').on('click','.sidebar-menu .has-sub .sub .has-sub-sub > a',function () {
             var last = jQuery('.has-sub-sub.open', $('.sidebar-menu'));
             last.removeClass("open");
             jQuery('.arrow', last).removeClass("open");
@@ -453,7 +453,7 @@ var App = function () {
 	/*-----------------------------------------------------------------------------------*/
 	var handleBoxTools = function () {
 		//Collapse
-		jQuery('.box .tools .collapse, .box .tools .expand').click(function () {
+		jQuery(document).on('click','.box .tools .collapse, .box .tools .expand',function () {
             var el = jQuery(this).parents(".box").children(".box-body");
             if (jQuery(this).hasClass("collapse")) {
 				jQuery(this).removeClass("collapse").addClass("expand");
@@ -469,7 +469,7 @@ var App = function () {
         });
 		
 		/* Close */
-		jQuery('.box .tools a.remove').click(function () {
+		jQuery(document).on('click','.box .tools a.remove',function () {
             var removable = jQuery(this).parents(".box");
             if (removable.next().hasClass('box') || removable.prev().hasClass('box')) {
                 jQuery(this).parents(".box").remove();
@@ -479,7 +479,7 @@ var App = function () {
         });
 		
 		/* Reload */
-		jQuery('.box .tools a.reload').click(function () {
+		jQuery(document).on('click','.box .tools a.reload',function () {
             var el = jQuery(this).parents(".box");
             App.blockUI(el);
             window.setTimeout(function () {

@@ -1,0 +1,21 @@
+.modal-lg8 {
+    position: relative;
+    z-index: 1050;
+    width: 66.66666666666666%;
+    margin: 10px auto;
+}
+
+.modal-lg6 {
+    position: relative;
+    z-index: 1050;
+    width: 50%;
+    margin: 10px auto;
+}
+
+.modal-lg3 {
+    position: relative;
+    z-index: 1050;
+    width: 25%;
+    margin: 10px auto;
+}
+

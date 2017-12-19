@@ -20,10 +20,13 @@
     <link rel="stylesheet" type="text/css" href="js/bootstrap-daterangepicker/daterangepicker-bs3.css"/>
     <!-- PRETTIFY -->
     <link rel="stylesheet" type="text/css" href="js/prettify/prettify.css"/>
+    <link rel="stylesheet" type="text/css" href="css/app/anim-in-out.css"/>
+    <link rel="stylesheet" type="text/css" href="css/app/common.css"/>
+
     <!-- PRETTIFY -->
     <script type="text/javascript" src="js/prettify/prettify.js"></script>
 </head>
-<body onload="prettyPrint();" ng-controller="MainCtrl">
+<body onload="prettyPrint();" ng-controller="MainCtrl as ctrl">
 <!--http://demo.cssmoban.com/cssthemes3/mbts_20_CloudAdmin/tabs_accordions.html-->
 <!-- HEADER -->
 <header class="navbar clearfix navbar-fixed-top" id="header">
@@ -235,7 +238,7 @@
             <div class="divide-20"></div>
             <!-- SEARCH BAR -->
             <div id="search-bar">
-                <input class="search" type="text" placeholder="Search"><i class="fa fa-search search-icon"></i>
+                <input class="search" type="text" ng-model="globalConf.searchPriv" placeholder="Search"><i class="fa fa-search search-icon"></i>
             </div>
             <!-- /SEARCH BAR -->
 
@@ -243,42 +246,34 @@
             <!-- <div id="quicklaunch">
             <!-- /SIDEBAR QUICK-LAUNCH -->
 
-            <!-- SIDEBAR MENU -->
+            <!-- SIDEBAR MENU --><!--'active':true -->
             <ul>
-                <li>
-                    <a href="index.html">
-                        <i class="fa fa-tachometer fa-fw"></i> <span class="menu-text">Dashboard</span>
-                        <span class="selected"></span>
-                    </a>
-                </li>
-                <li class="has-sub active">
+                <li ng-class="{'has-sub':priv.subPriv.length>0,'active':true }" ng-repeat="priv in privs[0].subPriv | filter:globalConf.searchPriv track by priv.privId ">
+                    <!--一级菜单-->
                     <a href="javascript:;" class="">
-                        <i class="fa fa-bookmark-o fa-fw"></i> <span class="menu-text">UI Features</span>
+                        <i class="fa fa-bookmark-o fa-fw"></i>
+                        <span class="menu-text" ng-bind="priv.privName"></span>
                         <span class="arrow open"></span>
                         <span class="selected"></span>
                     </a>
-                    <ul class="sub">
-                        <li><a class="" href="elements.html"><span class="sub-menu-text">Elements</span></a></li>
-                        <li><a class="" href="notifications.html"><span
-                                class="sub-menu-text">Hubspot Notifications</span></a></li>
-                        <li><a class="" href="buttons_icons.html"><span class="sub-menu-text">Buttons & Icons</span></a>
-                        </li>
-                        <li><a class="" href="sliders_progress.html"><span
-                                class="sub-menu-text">Sliders & Progress</span></a></li>
-                        <li class="current"><a class="" href="typography.html"><span
-                                class="sub-menu-text">Typography</span></a></li>
-                        <li><a class="" href="tabs_accordions.html"><span class="sub-menu-text">Tabs & Accordions</span></a>
-                        </li>
-                        <li><a class="" href="treeview.html"><span class="sub-menu-text">Treeview</span></a></li>
-                        <li><a class="" href="nestable_lists.html"><span class="sub-menu-text">Nestable Lists</span></a>
-                        </li>
-                        <li class="has-sub-sub">
-                            <a href="javascript:;" class=""><span class="sub-menu-text">Third Level Menu</span>
-                                <span class="arrow"></span>
+                    <ul class="sub" ng-if="priv.subPriv.length>0">
+                        <!--class="current"-->
+                        <!--<li ><a href="#"><span class="sub-menu-text">Elements</span></a></li>-->
+                        <li ng-class="{'has-sub-sub':priv.subPriv.length>0}" ng-repeat="subPriv1 in priv.subPriv track by subPriv1.privId">
+                            <!--二级级菜单-->
+                            <a href="javascript:;" class="" ng-click="goToState(subPriv1)">
+                                <i class="fa fa-fw" ng-class="subPriv1.iconClass"></i>
+                                <span class="sub-menu-text"  ng-bind="subPriv1.privName"></span>
+                                <span ng-class="{arrow:subPriv1.subPriv.length>0}"></span>
                             </a>
-                            <ul class="sub-sub">
-                                <li><a class="" href="#"><span class="sub-sub-menu-text">Item 1</span></a></li>
-                                <li><a class="" href="#"><span class="sub-sub-menu-text">Item 2</span></a></li>
+                            <ul class="sub-sub"  style="display:none" ng-repeat="subPriv2 in subPriv1.subPriv track by subPriv2.privId">
+                                <li class="current">
+                                    <!--三级菜单-->
+                                    <a class="current" href="#" ng-click="goToState(subPriv2)">
+                                        <i ng-class="subPriv2.iconClass"></i>
+                                        <span class="sub-sub-menu-text" ng-bind="subPriv2.privName"></span>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                     </ul>
@@ -313,7 +308,7 @@
             </div>
         </div>
         <!-- /SAMPLE BOX CONFIGURATION MODAL FORM-->
-        <div class="container">
+        <div class="container" id="container">
             <div class="row">
                 <div id="content" class="col-lg-12">
                     <!-- PAGE HEADER-->
@@ -338,236 +333,19 @@
                         </div>
                     </div>
                     <!-- /PAGE HEADER -->
-                    <!-- ROW 1 -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- BOX -->
-                            <div class="box border primary">
-                                <div class="box-title">
-                                    <h4><i class="fa fa-list-ul"></i>用户查询</h4>
-                                    <div class="tools">
-                                        <a href="#box-config" data-toggle="modal" class="config">
-                                            <i class="fa fa-cog"></i>
-                                        </a>
-                                        <a href="javascript:;" class="reload">
-                                            <i class="fa fa-refresh"></i>
-                                        </a>
-                                        <a href="javascript:;" class="collapse">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                        <a href="javascript:;" class="remove">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="box-body font-14">
-                                        <form class="form-horizontal" role="form">
-                                            <div class="form-group">
-                                                <label class="col-sm-1 control-label">Input Prepend</label>
-                                                <div class="col-sm-2">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">@</span>
-                                                        <input type="text" class="form-control" placeholder="Username">
-                                                    </div>
-                                                </div>
-
-                                                <label class="col-sm-1 control-label">Input Prepend</label>
-                                                <div class="col-sm-2">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">@</span>
-                                                        <input type="text" class="form-control" placeholder="Username">
-                                                    </div>
-                                                </div>
-
-                                                <label class="col-sm-1 control-label">Input Prepend</label>
-                                                <div class="col-sm-2">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">@</span>
-                                                        <input type="text" class="form-control" placeholder="Username">
-                                                    </div>
-                                                </div>
-
-                                                <label class="col-sm-1 control-label">Input Prepend</label>
-                                                <div class="col-sm-2">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">@</span>
-                                                        <input type="text" class="form-control" placeholder="Username">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="col-sm-1 control-label">Input Append</label>
-                                                <div class="col-sm-8">
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control">
-                                                        <span class="input-group-addon">.00</span>
-                                                    </div>
-                                                </div>
-
-                                                <label class="col-sm-1 control-label">Input Prepend</label>
-                                                <div class="col-sm-2">
-                                                    <div class="input-group">
-                                                        <span class="input-group-addon">@</span>
-                                                        <input type="text" class="form-control" placeholder="Username">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-sm-1 control-label">Textarea:</label>
-                                                <div class="col-sm-11"><textarea rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
-                                            </div>
-                                        </form>
-                                 <!--   <hr class='hr-normal'>-->
-                                </div>
-                            </div>
-                            <!-- /BOX -->
-                        </div>
-                    </div>
-                    <!-- ROW 1 -->
-
-                    <!-- ROW 2 -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <!-- BOX -->
-                            <div class="box border purple">
-                                <div class="box-title">
-                                    <h4><i class="fa fa-table"></i>用户明细查询</h4>
-                                    <div class="tools hidden-xs">
-                                        <a href="#box-config" data-toggle="modal" class="config">
-                                            <i class="fa fa-cog"></i>
-                                        </a>
-                                        <a href="javascript:;" class="reload">
-                                            <i class="fa fa-refresh"></i>
-                                        </a>
-                                        <a href="javascript:;" class="collapse">
-                                            <i class="fa fa-chevron-up"></i>
-                                        </a>
-                                        <a href="javascript:;" class="remove">
-                                            <i class="fa fa-times"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="box-body">
-                                    <form class="form-horizontal" role="form">
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label">Input Prepend</label>
-                                            <div class="col-sm-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">@</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                            </div>
-
-                                            <label class="col-sm-1 control-label">Input Prepend</label>
-                                            <div class="col-sm-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">@</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                            </div>
-
-                                            <label class="col-sm-1 control-label">Input Prepend</label>
-                                            <div class="col-sm-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">@</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                            </div>
-
-                                            <label class="col-sm-1 control-label">Input Prepend</label>
-                                            <div class="col-sm-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">@</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label">Input Append</label>
-                                            <div class="col-sm-8">
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control">
-                                                    <span class="input-group-addon">.00</span>
-                                                </div>
-                                            </div>
-
-                                            <label class="col-sm-1 control-label">Input Prepend</label>
-                                            <div class="col-sm-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">@</span>
-                                                    <input type="text" class="form-control" placeholder="Username">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-1 control-label">Textarea:</label>
-                                            <div class="col-sm-11"><textarea rows="3" cols="5" name="textarea" class="form-control"></textarea></div>
-                                        </div>
-                                    </form>
-                                    <div class="box-button" >
-                                        <p class="btn-toolbar" style="float: right">
-                                            <button class="btn btn-default">Default Button</button>
-                                            <button class="btn btn-primary">Primary Button</button>
-                                            <button class="btn btn-info">Info Button</button>
-                                            <button class="btn btn-success">Success Button</button>
-                                            <button class="btn btn-warning">Warning Button</button>
-                                            <button class="btn btn-danger">Danger Button</button>
-                                            <button class="btn btn-inverse">删除</button>
-                                            <button class="btn btn-link">查询</button>
-                                        </p>
-                                    </div>
-                                    <table id="datatable2" cellpadding="0" cellspacing="0" border="0" class="datatable table table-striped table-bordered table-hover">
-                                        <thead>
-                                        <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th class="hidden-xs">Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th class="hidden-xs">CSS grade</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr class="gradeX">
-                                            <td>Trident</td>
-                                            <td>
-                                                Internet
-                                                Explorer
-                                                4.0
-                                            </td>
-                                            <td class="hidden-xs">Win 95+</td>
-                                            <td class="center">4</td>
-                                            <td class="center hidden-xs">X</td>
-                                        </tr>
-                                        <tr class="gradeC">
-                                            <td>Trident</td>
-                                            <td>Internet
-                                                Explorer 5.0</td>
-                                            <td class="hidden-xs">Win 95+</td>
-                                            <td class="center">5</td>
-                                            <td class="center hidden-xs">C</td>
-                                        </tr>
-                                        </tbody>
-                                        <tfoot>
-                                        <tr>
-                                            <th>Rendering engine</th>
-                                            <th>Browser</th>
-                                            <th class="hidden-xs">Platform(s)</th>
-                                            <th>Engine version</th>
-                                            <th class="hidden-xs">CSS grade</th>
-                                        </tr>
-                                        </tfoot>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- /BOX -->
-                        </div>
-                    </div>
-                    <!-- ROW 2 -->
+                    <ui-view class="row anim-in-out {{ctrl.mainViewStyle}}"
+                    data-anim-sync="{{ctrl.sync}}"
+                    data-anim-speed="{{ctrl.speed}}"
+                    ng-style="{
+                    '-webkit-transition-duration': ctrl.speed + 'ms',
+                    '-moz-transition-duration': ctrl.speed + 'ms',
+                    '-ms-transition-duration': ctrl.speed + 'ms',
+                    '-o-transition-duration': ctrl.speed + 'ms',
+                    'transition-duration': ctrl.speed + 'ms'
+                    }"></ui-view>
 
 
-                   <!-- <div class="separator"></div>-->
+                    <!-- <div class="separator"></div>-->
                     <div class="footer-tools">
 							<span class="go-top">
 								<i class="fa fa-chevron-up"></i> Top
@@ -576,15 +354,31 @@
                 </div><!-- /CONTENT-->
             </div>
         </div>
+            <!-- CONTENT ROW-->
+        </div>
     </div>
 </section>
+<!-- JQUERY -->
+<script src="js/jquery/jquery-2.0.3.min.js"></script>
+
+<script type="text/javascript">
+
+</script>
 <script type="text/javascript" src="js/angular/angular.js"></script>
+<script type="text/javascript" src="js/angular/angular-animate.js"></script>
+<script type="text/javascript" src="js/angular/anim-in-out.js"></script>
+<script type="text/javascript" src="js/angular/uirouter/angular-ui-router.js"></script>
+<script type="text/javascript" src="js/angular/bootstrap/ui-bootstrap-tpls-2.5.0.js"></script>
+<script type="text/javascript" src="js/app/lazyload/ocLazyLoad.js"></script>
+<script type="text/javascript" src="js/app/service/dataCenterService.js"></script>
 <script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="js/app/app-router.js"></script>
+<script type="text/javascript" src="js/app/service/httpService.js"></script>
+
 <!--/PAGE -->
 <!-- JAVASCRIPTS -->
 <!-- Placed at the end of the document so the pages load faster -->
-<!-- JQUERY -->
-<script src="js/jquery/jquery-2.0.3.min.js"></script>
+
 <!-- JQUERY UI-->
 <script src="js/jquery-ui-1.10.3.custom/js/jquery-ui-1.10.3.custom.min.js"></script>
 <!-- BOOTSTRAP -->
