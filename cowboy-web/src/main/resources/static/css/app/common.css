@@ -1,21 +1,31 @@
+/*弹出框*/
 .modal-lg8 {
     position: relative;
     z-index: 1050;
     width: 66.66666666666666%;
-    margin: 10px auto;
+    margin: 50px auto 0;
 }
 
 .modal-lg6 {
     position: relative;
     z-index: 1050;
     width: 50%;
-    margin: 10px auto;
+    margin: 50px auto 0;
 }
 
 .modal-lg3 {
     position: relative;
     z-index: 1050;
     width: 25%;
-    margin: 10px auto;
+    margin: 50px auto 0;
 }
 
+@media (min-width: 768px) {
+    .form-horizontal .control-label-left {
+        text-align: left;
+    }
+}
+/*表单label*/
+.control-label-left{
+    text-align: left;
+}

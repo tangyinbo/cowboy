@@ -53,19 +53,6 @@
               ]
             }
           ]
-        },
-        {
-          "privId":4,
-          "privName":"角色管理",
-          "privUrl":"/",
-          "state":"",
-          "parentId":1,
-          "iconClass":"",
-          "type":"1",
-          "deep":2,
-          "subPriv":[
-
-          ]
         }
       ]
     }

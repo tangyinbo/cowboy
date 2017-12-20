@@ -14,7 +14,16 @@
     <modules>
         <module>common-log</module>
         <module>common-model</module>
+        <module>common-utils</module>
     </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.sf.dozer</groupId>
+            <artifactId>dozer</artifactId>
+            <version>${dozer.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

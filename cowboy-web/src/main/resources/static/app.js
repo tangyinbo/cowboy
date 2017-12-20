@@ -1,7 +1,9 @@
 var cowboyApp = angular.module("cowboyApp", ['ui.router', 'oc.lazyLoad', 'DataCenterService', 'ngAnimate','anim-in-out','ui.bootstrap']);
 //常量定义----------------------------------------------
 cowboyApp.constant('appConstant', {
-    appName: '/cowboy'
+    appName: '/cowboy',
+    SUCCESS:'10200',
+    FAIL:'10201'
 });
 //主界面控制器-------------------------------------------
 cowboyApp.controller("MainCtrl", function ($scope, $state) {

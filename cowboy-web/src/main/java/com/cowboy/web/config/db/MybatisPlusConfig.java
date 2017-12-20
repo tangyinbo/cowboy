@@ -33,7 +33,7 @@ import javax.sql.DataSource;
  * @create 2017-12-13 15:14
  **/
 @Configuration
-@MapperScan(basePackages = {"com.cowboy.*.dao"})
+@MapperScan(basePackages = {"com.cowboy.*.mapper"})
 public class MybatisPlusConfig {
 
     @Autowired

@@ -80,13 +80,13 @@ public class UserRealm extends AuthorizingRealm {
         String userName = usernamePasswordToken.getUsername();
         //数据库获取用户
         SysUser user = new SysUser();
-        user.setLoginName("admin");
+        user.setUserName("admin");
         user.setPassword("ce2f6417c7e1d32c1d81a797ee0b499f87c5de06");
         //自定义Authentication对象，使得Subject除了携带用户的登录名外还可以携带更多信息.
         ShiroUser shiroUser = new ShiroUser();
         BeanUtils.copyProperties(user, shiroUser);
         //加密盐,使用用户账号
-        ByteSource byteSource = ByteSource.Util.bytes(user.getLoginName().toString());
+        ByteSource byteSource = ByteSource.Util.bytes(user.getUserName().toString());
         //返回认证信息
         return new SimpleAuthenticationInfo(shiroUser, user.getPassword(),byteSource, this.getClass().getName());//放入shiro.调用CredentialsMatcher检验密码
     }

@@ -20,24 +20,24 @@ import java.util.Objects;
 @NoArgsConstructor
 public class ShiroUser implements Serializable {
     private Integer userId;
-    private String loginName;
+    private String userName;
     private String name;
     /**
      * 本函数输出将作为默认的<shiro:principal/>输出.
      */
     @Override
     public String toString(){
-        return loginName;
+        return userName;
     }
     /**
      * 重载hashCode,只计算loginName;
      */
     @Override
     public int hashCode(){
-        return Objects.hashCode(loginName);
+        return Objects.hashCode(userName);
     }
     /**
-     * 重载equals,只计算loginName;
+     * 重载equals,只计算userName
      */
     @Override
     public boolean equals(Object obj){
@@ -51,11 +51,11 @@ public class ShiroUser implements Serializable {
             return false;
         }
         ShiroUser other=(ShiroUser)obj;
-        if(loginName==null){
-            if(other.loginName!=null){
+        if(userName==null){
+            if(other.getUserName()!=null){
                 return false;
             }
-        }else if(!loginName.equals(other.loginName)){
+        }else if(!userName.equals(other.getUserName())){
             return false;
         }
         return true;

@@ -79,6 +79,15 @@ public class CommonResponse<T> implements Serializable{
     }
 
     /**
+     * 构建成功响应
+     * @param <T>
+     * @return
+     */
+    public static <T> CommonResponse<T> buildSuccessResult(){
+        return buildSuccessResult(CommonResultCode.SUCCESS,null);
+    }
+
+    /**
      * 创建响应信息
      * @param commonResultCode 系统响应码封装
      * @param result 返回结果

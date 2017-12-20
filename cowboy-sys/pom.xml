@@ -20,6 +20,11 @@
     <dependencies>
         <dependency>
             <groupId>com.cowboy</groupId>
+            <artifactId>common-utils</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cowboy</groupId>
             <artifactId>common-model</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
@@ -60,6 +65,16 @@
             <groupId>com.cowboy</groupId>
             <artifactId>common-log</artifactId>
             <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
         </dependency>
     </dependencies>
 </project>

@@ -6,7 +6,6 @@ import com.cowboy.log.annotation.RequestParamResultLogPrint;
 import com.cowboy.log.process.DefaultRequestParamLogPrint;
 import com.cowboy.log.process.RequestParamLogPrint;
 import com.cowboy.log.utils.TraceLogIdUtils;
-import com.sun.xml.internal.ws.util.CompletedFuture;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
