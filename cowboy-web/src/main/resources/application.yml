@@ -7,7 +7,7 @@ spring:
     active: dev
   cache:
     ehcache:
-      config: classpath: ehcache.xml
+      config: classpath:ehcache.xml
 #--mybatis config---------------------------
 ###################  mybatis-plus配置  ###################
 mybatis-plus:

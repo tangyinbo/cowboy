@@ -43,8 +43,8 @@
             {
               "privId":6,
               "privName":"菜单管理测试",
-              "privUrl":"/",
-              "state":"",
+              "privUrl":"/privList",
+              "state":"privList",
               "parentId":3,
               "iconClass":"",
               "type":"1",

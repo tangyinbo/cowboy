@@ -24,6 +24,19 @@ function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider,$urlMatc
                 }
             }
         })
+        .state('privList', {
+            url: '/privList',
+            templateUrl: './view/sys/priv/privList.html',
+            controller: 'privListCtrl',
+            resolve: {
+                loader: function ($ocLazyLoad, $q) {
+                    //这个return语句一定要有,不然的话刷新浏览器会有问题
+                    return $ocLazyLoad.load({
+                        files: ['js/app/privController.js']
+                    });
+                }
+            }
+        })
 
 }
 angular.module("cowboyApp").config(config);

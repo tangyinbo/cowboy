@@ -7,5 +7,6 @@ package com.cowboy.utils.cache;/**
  * @version 1.0
  * @create 2017-12-20 17:06
  **/
-public enum EhCacheKeys {
+public interface EhCacheKeys {
+    String USER_LIST = "user_list_";
 }

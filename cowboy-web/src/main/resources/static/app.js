@@ -1,4 +1,11 @@
-var cowboyApp = angular.module("cowboyApp", ['ui.router', 'oc.lazyLoad', 'DataCenterService', 'ngAnimate','anim-in-out','ui.bootstrap']);
+var cowboyApp = angular.module("cowboyApp", ['ui.router'
+    , 'oc.lazyLoad'
+    , 'DataCenterService'
+    , 'ngAnimate'
+    ,'anim-in-out'
+    ,'ui.bootstrap'
+    ,'multiselect-searchtree'
+]);
 //常量定义----------------------------------------------
 cowboyApp.constant('appConstant', {
     appName: '/cowboy',

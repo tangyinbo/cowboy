@@ -1,0 +1,96 @@
+<!-- ROW 2 -->
+<div class="row anim-in-out {{ctrl.mainViewStyle}}"
+     data-anim-sync="{{ctrl.sync}}"
+     data-anim-speed="{{ctrl.speed}}"
+     ng-style="{
+                                '-webkit-transition-duration': ctrl.speed + 'ms',
+                                '-moz-transition-duration': ctrl.speed + 'ms',
+                                '-ms-transition-duration': ctrl.speed + 'ms',
+                                '-o-transition-duration': ctrl.speed + 'ms',
+                                'transition-duration': ctrl.speed + 'ms'
+                            }">
+
+    <div class="col-lg-12">
+        <h2></h2>
+
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <i class="glyphicon glyphicon-th-list"></i> Account Manager - [extra-buttons = true] <a href="#" data-toggle="modal" data-target="#AccountManagerTreeModal"><i class="pull-right glyphicon glyphicon-plus" style="color:white;"></i></a>
+                </div>
+                <multiselect-searchtree data-input-model="data" multi-select="true"
+                                        data-output-model="selectedItem2" data-callback="CustomCallback(item, selectedItems)"
+                                        data-select-only-leafs="false" extra-buttons="true" filter-type="hidden"></multiselect-searchtree>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="glyphicon glyphicon-th-list"></i> Account Manager <a href="#" data-toggle="modal" data-target="#AccountManagerTreeModal"><i class="pull-right glyphicon glyphicon-plus"></i></a>
+                </div>
+                <multiselect-searchtree data-input-model="data" multi-select="true"
+                                        data-output-model="selectedItem2" data-callback="CustomCallback(item, selectedItems)"
+                                        data-select-only-leafs="true" filter-type="disable"></multiselect-searchtree>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <i class="glyphicon glyphicon-th-list"></i> Account Manager - [direct-search = true] <a href="#" data-toggle="modal" data-target="#AccountManagerTreeModal"><i class="pull-right glyphicon glyphicon-plus" style="color:black;"></i></a>
+                </div>
+                <multiselect-searchtree data-input-model="data" multi-select="true"
+                                        data-output-model="selectedItem2" data-callback="CustomCallback(item, selectedItems)"
+                                        data-select-only-leafs="true" direct-search="true"></multiselect-searchtree>
+            </div>
+        </div>
+
+
+
+        <div id="AccountManagerTreeModal" class="modal fade" role="dialog" v>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">My Search Tree List</h4>
+                    </div>
+                    <div class="modal-body">
+                        <multiselect-searchtree data-input-model="data" multi-select="true"
+                                                data-output-model="selectedItem2" data-callback="CustomCallback(item, selectedItems)"
+                                                data-select-only-leafs="true"></multiselect-searchtree>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <i class="glyphicon glyphicon-th-list"></i> Account Manager - [direct-search = true] <a href="#" data-toggle="modal" data-target="#AccountManagerTreeModal"><i class="pull-right glyphicon glyphicon-plus" style="color:black;"></i></a>
+                </div>
+                <div class="panel-body">
+                    {{selectedItem2}}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <i class="glyphicon glyphicon-th-list"></i> Account Manager - [direct-search = true] <a href="#" data-toggle="modal" data-target="#AccountManagerTreeModal"><i class="pull-right glyphicon glyphicon-plus" style="color:black;"></i></a>
+                </div>
+                <div class="panel-body">
+                    {{data}}
+                </div>
+            </div>
+        </div>
+
+        <!-- /BOX -->
+    </div>
+</div>
+<!-- ROW 2 -->
